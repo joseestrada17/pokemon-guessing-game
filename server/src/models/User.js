@@ -44,6 +44,41 @@ class User extends uniqueFunc(Model) {
 
     return serializedJson;
   }
+  //
+  // static get relationMappings() {
+  //   const { Review, Movie, Vote } = require("./index.js")
+
+  //     return {
+  //       reviews: {
+  //         relation: Model.HasManyRelation,
+  //         modelClass: Review,
+  //         join: {
+  //           from: "users.id",
+  //           to: "reviews.userId"
+  //         }
+  //       },
+  //       movies: {
+  //         relation: Model.ManyToManyRelation,
+  //         modelClass: Movie,
+  //         join: {
+  //           from: "users.id",
+  //           through: {
+  //             from: "reviews.userId",
+  //             to: "reviews.movieId"
+  //           },
+  //           to: "movies.id"
+  //         }
+  //       },
+  //       votes: {
+  //         relation: Model.HasManyRelation,
+  //         modelClass: Vote,
+  //         join: {
+  //           from: "users.id",
+  //           to: "votes.userId"
+  //         }
+  //       }
+  //     }
+  //   }
 }
 
 module.exports = User;
