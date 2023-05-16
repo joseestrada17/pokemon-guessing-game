@@ -1,7 +1,10 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
-// place global css here
+@font-face {
+  font-family: "PokemonRed";
+  src: url("../../../public/Pokemon\ Classic.ttf") format("truetype");
+}
 *,
 *::before,
 *::after {
