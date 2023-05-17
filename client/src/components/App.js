@@ -26,15 +26,17 @@ const App = (props) => {
   }, []);
 
   return (
-    <Router>
-      <TopBar user={currentUser} />
-      <Switch>
-        <Route exact path="/" component={WelcomePage} />
-        <Route exact path="/users/new" component={RegistrationForm} />
-        <Route exact path="/user-sessions/new" component={SignInForm} />
-        <Route exact path="/play" component={GamePage} />
-      </Switch>
-    </Router>
+    <div className="global-style">
+      <Router>
+        <TopBar user={currentUser} />
+        <Switch>
+          <Route exact path="/" component={WelcomePage} />
+          <Route exact path="/users/new" component={RegistrationForm} />
+          <Route exact path="/user-sessions/new" component={SignInForm} />
+          <Route exact path="/play" component={GamePage} />
+        </Switch>
+      </Router>
+    </div>
   );
 };
 

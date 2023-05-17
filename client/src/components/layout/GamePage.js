@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import GuessForm from "./GuessForm";
 
 const GamePage = (props) => {
   const [games, setGames] = useState([]);
@@ -28,10 +29,8 @@ const GamePage = (props) => {
     getGames();
   }, []);
 
-  console.log();
-
   return (
-    <div>
+    <div className="game-page">
       <h2>Guess The Pokemon!</h2>
       {randomGame ? (
         <div>
@@ -43,6 +42,7 @@ const GamePage = (props) => {
       ) : (
         <p>Loading...</p>
       )}
+      <GuessForm />
     </div>
   );
 };

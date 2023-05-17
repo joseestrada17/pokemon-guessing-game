@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const WelcomePage = (props) => {
   return (
-    <div>
+    <div className="welcome-page">
       <h2 className="welcome-message">Pokemon Guessing Game</h2>
       <h4 className="welcome-message">
         <Link to="/play">Play Game</Link>
