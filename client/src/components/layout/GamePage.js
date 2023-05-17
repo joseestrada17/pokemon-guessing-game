@@ -42,7 +42,7 @@ const GamePage = (props) => {
       ) : (
         <p>Loading...</p>
       )}
-      <GuessForm />
+      {/* <GuessForm game={randomGame} key={randomGame.id} /> */}
     </div>
   );
 };

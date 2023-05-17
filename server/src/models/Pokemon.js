@@ -1,8 +1,8 @@
 const Model = require("./Model");
 
-class Game extends Model {
+class Pokemon extends Model {
   static get tableName() {
-    return "games";
+    return "pokemons";
   }
 
   static get jsonSchema() {
@@ -25,20 +25,6 @@ class Game extends Model {
       },
     };
   }
-  static get relationMappings() {
-    const { Guess } = require("./index.js");
-
-    return {
-      guesses: {
-        relation: Model.HasManyRelation,
-        modelClass: Guess,
-        join: {
-          from: "games.id",
-          to: "guesses.gameId",
-        },
-      },
-    };
-  }
 }
 
-module.exports = Game;
+module.exports = Pokemon;

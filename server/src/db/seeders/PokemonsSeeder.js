@@ -1,8 +1,8 @@
-import { Game } from "../../models/index.js";
+import { Pokemon } from "../../models/index.js";
 
-class GamesSeeder {
+class PokemonsSeeder {
   static async seed() {
-    const gamesData = [
+    const pokemonsData = [
       {
         pokedexNumber: 7,
         speciesName: "Squirtle",
@@ -47,13 +47,15 @@ class GamesSeeder {
       },
     ];
 
-    for (const singleGame of gamesData) {
-      const currentGame = await Game.query().findOne({ pokedexNumber: singleGame.pokedexNumber });
-      if (!currentGame) {
-        await Game.query().insert(singleGame);
+    for (const singlePokemon of pokemonsData) {
+      const currentPokemon = await Pokemon.query().findOne({
+        pokedexNumber: singlePokemon.pokedexNumber,
+      });
+      if (!currentPokemon) {
+        await Pokemon.query().insert(singlePokemon);
       }
     }
   }
 }
 
-export default GamesSeeder;
+export default PokemonsSeeder;
