@@ -12,6 +12,7 @@ exports.up = async (knex) => {
     table.string("speciesName").notNullable();
     table.string("type");
     table.string("imageUrl");
+    table.bigInteger("userId").unsigned().references("users.id").index();
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });

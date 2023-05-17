@@ -1,6 +1,12 @@
 @import "./foundation/settings";
 @import "~foundation-sites/scss/foundation";
 @include foundation-everything;
+@font-face {
+  font-family: "Pokemon CLassic";
+  src: url("../../../public/fonts/Pokemon\ Classic.ttf") format("truetype");
+}
+
+@import "./styles.scss";
 *,
 *::before,
 *::after {
