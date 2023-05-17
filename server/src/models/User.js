@@ -45,28 +45,28 @@ class User extends uniqueFunc(Model) {
     return serializedJson;
   }
 
-  static get relationMappings() {
-    const { Guess, Game } = require("./index.js");
+  // static get relationMappings() {
+  //   const { Guess, Game } = require("./index.js");
 
-    return {
-      games: {
-        relation: Model.HasManyRelation,
-        modelClass: Game,
-        join: {
-          from: "users.id",
-          to: "games.userId",
-        },
-      },
-      guesses: {
-        relation: Model.HasManyRelation,
-        modelClass: Guess,
-        join: {
-          from: "users.id",
-          to: "guesses.userId",
-        },
-      },
-    };
-  }
+  //   return {
+  //     games: {
+  //       relation: Model.HasManyRelation,
+  //       modelClass: Game,
+  //       join: {
+  //         from: "users.id",
+  //         to: "games.userId",
+  //       },
+  //     },
+  //     guesses: {
+  //       relation: Model.HasManyRelation,
+  //       modelClass: Guess,
+  //       join: {
+  //         from: "users.id",
+  //         to: "guesses.userId",
+  //       },
+  //     },
+  //   };
+  // }
 }
 
 module.exports = User;

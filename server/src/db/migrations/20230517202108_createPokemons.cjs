@@ -6,13 +6,12 @@
  * @param {Knex} knex
  */
 exports.up = async (knex) => {
-  return knex.schema.createTable("games", (table) => {
+  return knex.schema.createTable("pokemons", (table) => {
     table.bigIncrements("id");
     table.integer("pokedexNumber").notNullable();
     table.string("speciesName").notNullable();
     table.string("type");
     table.string("imageUrl");
-    table.bigInteger("userId").unsigned().references("users.id").index();
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());
   });
@@ -22,5 +21,5 @@ exports.up = async (knex) => {
  * @param {Knex} knex
  */
 exports.down = (knex) => {
-  return knex.schema.dropTableIfExists("games");
+  return knex.schema.dropTableIfExists("pokemons");
 };
