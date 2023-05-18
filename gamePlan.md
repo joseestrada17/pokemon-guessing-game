@@ -1,9 +1,9 @@
-- rename your games migration to be a pokemons table
-- also rename your game router and Game model etc to be Pokemon
+- rename your games migration to be a pokemons table -done
+- also rename your game router and Game model etc to be Pokemon -done
   Features
-- create a Game migration, model. Seed quizzes (which should just have a userId, id and title)
-- add new game form that redirects to game show page after creation
-- game show page (shows the title of the game...thats it e.g. "Starter Pokemon Quiz")
+- create a Game migration, model. Seed quizzes (which should just have a userId, id and title) -done
+- add new game form that redirects to game show page after creation -done
+- game show page (shows the title of the game...thats it e.g. "Starter Pokemon Quiz") -done
 - on the game show page, you see a form to add prompts (checkin with Nick when you get here)
 - a prompt is a pokemon that you can guess right
 - make prompts table, model and gamePromptsRouter
