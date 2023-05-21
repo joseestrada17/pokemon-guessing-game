@@ -1,5 +1,5 @@
 import express from "express";
-import { Game } from "../../../models/index.js";
+import { Game, Prompt } from "../../../models/index.js";
 
 const gamesRouter = new express.Router();
 
@@ -16,9 +16,16 @@ gamesRouter.get("/:id", async (req, res) => {
   const { id } = req.params;
   try {
     const game = await Game.query().findById(id);
-    return res.status(200).json({ game: game });
+
+    if (!game) {
+      return res.status(404).json({ errors: "Game not found" });
+    }
+
+    const prompts = await Prompt.query().where("gameId", id);
+
+    return res.status(200).json({ game, prompts });
   } catch (error) {
-    res.status(500).json({ errors: error });
+    res.status(500).json({ errors: error.message });
   }
 });
 

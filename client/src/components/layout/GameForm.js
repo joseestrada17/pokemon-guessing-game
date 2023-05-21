@@ -29,9 +29,9 @@ const GameForm = () => {
         }
       } else {
         const responseBody = await response.json();
-        setGames([...games, responseBody.newGame]); // Use `responseBody.newGame`
-        const gameId = responseBody.newGame.id; // Access `id` from `newGame`
-        history.push(`/games/${gameId}`); // Redirect to the game show page
+        setGames([...games, responseBody.newGame]);
+        const gameId = responseBody.newGame.id;
+        history.push(`/games/${gameId}`);
       }
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);

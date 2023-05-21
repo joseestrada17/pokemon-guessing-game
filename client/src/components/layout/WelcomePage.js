@@ -7,9 +7,12 @@ const WelcomePage = (props) => {
       <div className="welcome-message">
         <h2>Pokemon Guessing Game</h2>
         <h4>
-          <Link to="/play">Play Game</Link>
+          <Link to="/games">Play a game</Link>
         </h4>
       </div>
+      <h4>
+        <Link to="/newgame">Make a new game</Link>
+      </h4>
       <p className="authors">Developed and Designed by: Jose Estrada</p>
     </div>
   );
