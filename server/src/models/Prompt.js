@@ -1,14 +1,14 @@
 const { Model } = require("objection");
 
-class Game extends Model {
+class Prompt extends Model {
   static get tableName() {
-    return "games";
+    return "prompts";
   }
 
   static get jsonSchema() {
     return {
       type: "object",
-      required: ["title"],
+      required: ["correctPokemonName"],
       properties: {
         title: {
           type: "string",
@@ -17,18 +17,18 @@ class Game extends Model {
     };
   }
   static get relationMappings() {
-    const { Prompt } = require("./index.js");
+    const { Game } = require("./index.js");
     return {
-      prompts: {
-        relation: Model.HasManyRelation,
-        modelClass: Prompt,
+      game: {
+        relation: Model.BelongsToOneRelation,
+        modelClass: Game,
         join: {
-          from: "games.id",
-          to: "prompts.gameId",
+          from: "prompts.GameId",
+          to: "games.id",
         },
       },
     };
   }
 }
 
-module.exports = Game;
+module.exports = Prompt;
