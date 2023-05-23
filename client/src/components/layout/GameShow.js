@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const GameShow = (props) => {
   const { id } = useParams();
@@ -82,6 +83,7 @@ const GameShow = (props) => {
           </div>
         ))}
       </div>
+      <Link to={`/games/${id}/play`}>Play Game!</Link>
     </div>
   );
 };
