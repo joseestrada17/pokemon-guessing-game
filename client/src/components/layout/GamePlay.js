@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const GamePlay = () => {
   const { id } = useParams();
@@ -80,6 +80,9 @@ const GamePlay = () => {
     return (
       <div>
         <h2 className="game-name">Congratulations! You have won the game!</h2>
+        <p>
+          <Link to={`/games`}>Play another game</Link>
+        </p>
       </div>
     );
   }
