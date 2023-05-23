@@ -18,7 +18,7 @@ promptsRouter.post("/", async (req, res) => {
   try {
     const pokemonName = req.body.pokemonName;
 
-    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}?limit=151`);
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemonName}`);
     const pokemonData = await response.json();
 
     const correctPokemonApiId = pokemonData.id;

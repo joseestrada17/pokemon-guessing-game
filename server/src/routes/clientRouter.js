@@ -11,6 +11,7 @@ const clientRoutes = [
   "/games",
   "/games/:id",
   "/newgame",
+  "/games/:id/play",
 ];
 
 const authedClientRoutes = ["/profile"];
