@@ -30,8 +30,8 @@ const GameList = (props) => {
 
   return (
     <div>
-      <h2>Games</h2>
-      <div>{gamesListArray}</div>
+      <h2 className="left-space bottom-space">Games</h2>
+      <div className="left-space pokemon-gbc-frame">{gamesListArray}</div>
     </div>
   );
 };

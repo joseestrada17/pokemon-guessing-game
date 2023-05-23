@@ -5,7 +5,7 @@ const GameTile = ({ game }) => {
   return (
     <div>
       <Link to={`/games/${game.id}`}>
-        <p>{game.title}</p>
+        <p className="button-box">{game.title}</p>
       </Link>
     </div>
   );

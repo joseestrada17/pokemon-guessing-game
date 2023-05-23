@@ -1,3 +1,12 @@
+$background-green: #a9b49e;
+$light-gray: #a9a9a9;
+$dark-gray: #545454;
+
+body {
+  // background-color: #7da14d;
+  background-color: $background-green;
+}
+
 .global-style {
   font-family: "Pokemon Classic", sans-serif !important;
 }
@@ -47,3 +56,126 @@ h4 {
     text-align: center;
   }
 }
+
+.button-box {
+  display: inline-block;
+  background-color: $dark-gray;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: $light-gray;
+  text-decoration: none;
+  text-transform: uppercase;
+  cursor: pointer;
+  box-shadow: 0 0 0 2px #6c6c6c, 0 0 0 4px $light-gray, 2px 2px 0 4px $dark-gray;
+  transition: background-color 0.3s ease;
+  outline: none;
+}
+
+.button-box:hover {
+  background-color: $light-gray;
+  color: $dark-gray;
+}
+
+.button-box:active {
+  background-color: #c8c8c8;
+}
+
+.left-space {
+  margin-left: 5%;
+}
+
+.bottom-space {
+  margin-bottom: 3%;
+}
+
+.pokemon-gbc-frame {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  margin-top: 2%;
+  background-color: white;
+  text-align: center;
+  padding: 2%;
+  box-shadow: 0 0 0 2px #000000, 2px 2px 0 2px #000000, -2px -2px 0 2px #000000,
+    0 0 0 4px $background-green;
+}
+
+.top-bar {
+  background-color: $light-gray;
+  .menu {
+    background-color: $light-gray;
+  }
+}
+
+.title-link {
+  padding-top: 0% !important;
+  padding-bottom: 0% !important;
+  color: black;
+}
+
+.pokemon-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-gap: 10px;
+}
+
+.margin {
+  margin-left: 3%;
+  margin-right: 3%;
+}
+
+.add-pokemon {
+  margin-top: 2%;
+  margin-bottom: 1%;
+}
+
+.game-name {
+  margin-top: 3%;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.text-with-arrow {
+  display: flex;
+  align-items: center;
+}
+
+.text-with-arrow .image {
+  display: inline-flex;
+  align-items: center;
+  padding-left: 25px;
+  background-image: url("../../../public/images/arrow-gif.gif");
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-position-y: 6px;
+  background-size: 20px auto;
+}
+
+// .mouseover-text-with-arrow {
+//   display: flex;
+//   align-items: center;
+// }
+
+// .mouseover-text-with-arrow .link {
+//   display: flex;
+//   align-items: center;
+//   position: relative;
+// }
+
+// .mouseover-text-with-arrow .image {
+//   position: absolute;
+//   left: 0;
+//   top: 50%;
+//   transform: translateY(-50%);
+//   width: 20px;
+//   height: 20px;
+//   background-image: url("../../../public/images/play.png");
+//   background-repeat: no-repeat;
+//   background-position: center;
+//   opacity: 0;
+// }
+
+// .mouseover-text-with-arrow:hover .image {
+//   opacity: 1;
+// }
