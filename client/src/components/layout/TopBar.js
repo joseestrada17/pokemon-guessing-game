@@ -24,9 +24,10 @@ const TopBar = ({ user }) => {
     <div className="top-bar">
       <div className="top-bar-left">
         <ul className="menu">
-          <li className="menu-text">Pokemon Guessing Game</li>
-          <li>
-            <Link to="/">Home</Link>
+          <li className="menu-text">
+            <Link className="title-link" to="/">
+              Pokemon Guessing Game
+            </Link>
           </li>
         </ul>
       </div>

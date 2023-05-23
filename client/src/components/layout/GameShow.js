@@ -58,12 +58,9 @@ const GameShow = (props) => {
   }, []);
 
   return (
-    <div>
-      <h2>{game.title}</h2>
-      <p>{game.userId}</p>
-
+    <div className="margin">
       <form onSubmit={handleSubmit}>
-        <label>Pokemon Name</label>
+        <label className="add-pokemon">Add a pokemon:</label>
         <input
           type="text"
           name="name"
@@ -72,12 +69,18 @@ const GameShow = (props) => {
         />
 
         <input type="submit" />
+        <h3 className="game-name">{game.title}</h3>
       </form>
-
-      <div>
-        {prompts.map((prompt) => {
-          return <p key={prompt.id}> {prompt.correctPokemonName}</p>;
-        })}
+      <div className="pokemon-grid pokemon-gbc-frame">
+        {prompts.map((prompt) => (
+          <div className="text-with-arrow">
+            <span className="image">
+              <p className="text" key={prompt.id}>
+                {prompt.correctPokemonName}
+              </p>
+            </span>
+          </div>
+        ))}
       </div>
     </div>
   );
