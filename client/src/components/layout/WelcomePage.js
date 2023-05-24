@@ -1,21 +1,38 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 
-const WelcomePage = (props) => {
+const WelcomePage = ({ user }) => {
+  const history = useHistory();
+  const handlePlayGame = () => {
+    if (user) {
+      history.push("/games");
+    } else {
+      history.push("/user-sessions/new");
+    }
+  };
+
+  const handleNewGame = () => {
+    if (user) {
+      history.push("/newgame");
+    } else {
+      history.push("/user-sessions/new");
+    }
+  };
+
   return (
     <div className="welcome-page">
       <div className="welcome-message">
         <h2>Pokemon Guessing Game</h2>
         <h4>
-          <Link className="button-box" to="/games">
+          <button className="button-box" onClick={handlePlayGame}>
             Play a game
-          </Link>
+          </button>
         </h4>
       </div>
       <h4>
-        <Link className="button-box" to="/newgame">
+        <button className="button-box" onClick={handleNewGame}>
           Make a new game
-        </Link>
+        </button>
       </h4>
       <p className="authors">Developed and Designed by: Jose Estrada</p>
     </div>
