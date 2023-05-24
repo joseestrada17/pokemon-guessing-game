@@ -34,7 +34,9 @@ const App = (props) => {
       <Router>
         <TopBar user={currentUser} />
         <Switch>
-          <Route exact path="/" component={WelcomePage} />
+          <Route exact path="/">
+            <WelcomePage user={currentUser} />
+          </Route>
           <Route exact path="/users/new" component={RegistrationForm} />
           <Route exact path="/user-sessions/new" component={SignInForm} />
           <Route exact path="/games">
