@@ -14,6 +14,9 @@ const GamePlay = () => {
   const [isCorrectGuess, setIsCorrectGuess] = useState(null);
   const [hasWon, setHasWon] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [suggestions, setSuggestions] = useState([]);
+  const [pokemonNames, setPokemonNames] = useState([]);
+  const [showSuggestions, setShowSuggestions] = useState(false);
 
   const getGame = async () => {
     try {
@@ -30,6 +33,20 @@ const GamePlay = () => {
     } catch (error) {
       console.error(`Error in fetch: ${error.message}`);
     }
+  };
+
+  const handleInputChange = (event) => {
+    const value = event.target.value;
+    setPokemonName(value);
+    getSuggestions(value);
+    setShowSuggestions(value.trim().length > 0);
+  };
+
+  const getSuggestions = (value) => {
+    const filteredSuggestions = pokemonNames.filter((name) =>
+      name.toLowerCase().startsWith(value.toLowerCase())
+    );
+    setSuggestions(filteredSuggestions);
   };
 
   const handleSubmit = (event) => {
@@ -56,21 +73,47 @@ const GamePlay = () => {
     }
 
     setPokemonName("");
+    setSuggestions([]);
   };
 
   const isPokemon = (pokemon) => {
-    return pokemon.trim() !== "";
+    const formattedPokemon = pokemon.toLowerCase();
+    return pokemonNames.includes(formattedPokemon);
+  };
+
+  const handleSuggestionClick = (suggestion) => {
+    setPokemonName(suggestion);
+    setSuggestions([]);
   };
 
   useEffect(() => {
     getGame();
-  }, [id]);
+  }, []);
 
   useEffect(() => {
     if (isLoaded && correctGuesses.length === prompts.length) {
       setHasWon(true);
     }
-  }, [isLoaded, correctGuesses, prompts]);
+  }, []);
+
+  useEffect(() => {
+    const fetchPokemonNames = async () => {
+      try {
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`);
+        if (!response.ok) {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          throw new Error(errorMessage);
+        }
+        const data = await response.json();
+        const names = data.results.map((pokemon) => pokemon.name);
+        setPokemonNames(names);
+      } catch (error) {
+        console.error(`Error in fetch: ${error.message}`);
+      }
+    };
+
+    fetchPokemonNames();
+  }, []);
 
   if (!isLoaded) {
     return <div>Loading...</div>;
@@ -88,23 +131,31 @@ const GamePlay = () => {
   }
 
   return (
-    <div>
+    <div className="margin">
       <h2 className="game-name">{game.title}</h2>
       <p>Type the Pokémon you think are correct!</p>
       <form onSubmit={handleSubmit}>
-        <label className="guess-pokemon">Guess a Pokémon:</label>
-        <input
-          type="text"
-          name="name"
-          value={pokemonName}
-          onChange={(event) => setPokemonName(event.target.value)}
-        />
+        <label className="add-pokemon">Guess a pokemon:</label>
+        <input type="text" name="name" value={pokemonName} onChange={handleInputChange} />
+        {showSuggestions && (
+          <div className="suggestions-window">
+            <div className="suggestions">
+              {suggestions.map((suggestion) => (
+                <p key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
+                  {suggestion}
+                </p>
+              ))}
+            </div>
+          </div>
+        )}
         <input type="submit" value="Submit" />
       </form>
       {isCorrectGuess === true && <p className="guess-feedback">Your guess is correct!</p>}
-      {isCorrectGuess === false && <p className="guess-feedback">Your guess is incorrect.</p>}
+      {isCorrectGuess === false && isPokemon(pokemonName) && (
+        <p className="guess-feedback">Your guess is incorrect.</p>
+      )}
       {isCorrectGuess === false && !isPokemon(pokemonName) && (
-        <p className="guess-feedback">Invalid Pokémon name.</p>
+        <p className="error-message">Invalid Pokémon name. Please enter a valid Pokémon.</p>
       )}
       <div>
         <h3>Correct Guesses:</h3>

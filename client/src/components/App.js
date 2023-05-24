@@ -37,8 +37,9 @@ const App = (props) => {
           <Route exact path="/" component={WelcomePage} />
           <Route exact path="/users/new" component={RegistrationForm} />
           <Route exact path="/user-sessions/new" component={SignInForm} />
-          <Route exact path="/play" component={GamePage} />
-          <Route exact path="/games" component={GameList} />
+          <Route exact path="/games">
+            <GameList user={currentUser} />
+          </Route>
           <Route exact path="/games/:id">
             <GameShow user={currentUser} />
           </Route>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import GameShow from "./GameShow.js";
 import GameTile from "./GameTile.js";
 
 const GameList = (props) => {
@@ -25,13 +24,13 @@ const GameList = (props) => {
   }, []);
 
   const gamesListArray = games.map((game) => {
-    return <GameTile game={game} key={game.id} />;
+    return <GameTile user={props.user} game={game} key={game.id} />;
   });
 
   return (
     <div>
       <h2 className="left-space bottom-space">Games</h2>
-      <div className="left-space pokemon-gbc-frame">{gamesListArray}</div>
+      <div className="left-space games-pokemon-gbc-frame">{gamesListArray}</div>
     </div>
   );
 };

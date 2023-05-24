@@ -36,4 +36,22 @@ promptsRouter.post("/", async (req, res) => {
   }
 });
 
+promptsRouter.get("/pokemon", async (req, res) => {
+  try {
+    const searchInput = req.query.s;
+
+    const response = await fetch(`https://pokeapi.co/api/v2/pokemon/?limit=20&offset=0`);
+    const data = await response.json();
+    const pokemonNames = data.results.map((pokemon) => pokemon.name);
+
+    const suggestions = pokemonNames.filter((name) =>
+      name.toLowerCase().startsWith(searchInput.toLowerCase())
+    );
+
+    return res.status(200).json({ suggestions });
+  } catch (error) {
+    return res.status(500).json({ errors: error.message });
+  }
+});
+
 export default promptsRouter;
