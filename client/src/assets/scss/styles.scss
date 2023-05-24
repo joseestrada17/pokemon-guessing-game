@@ -101,6 +101,21 @@ h4 {
     0 0 0 4px $background-green;
 }
 
+.games-pokemon-gbc-frame {
+  margin-left: 10%;
+  margin-right: 10%;
+  margin-bottom: 5%;
+  margin-top: 2%;
+  background-color: white;
+  text-align: left;
+  padding: 2%;
+  box-shadow: 0 0 0 2px #000000, 2px 2px 0 2px #000000, -2px -2px 0 2px #000000,
+    0 0 0 4px $background-green;
+  // .play {
+  //   color: #000000;
+  // }
+}
+
 .top-bar {
   background-color: $light-gray;
   .menu {
@@ -179,3 +194,22 @@ h4 {
 // .mouseover-text-with-arrow:hover .image {
 //   opacity: 1;
 // }
+
+.suggestions-window {
+  position: absolute;
+  width: 94%;
+  z-index: 999;
+}
+
+.suggestions {
+  position: relative;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.suggestions p {
+  padding: 5px;
+  cursor: pointer;
+}

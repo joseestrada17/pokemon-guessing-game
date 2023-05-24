@@ -1,12 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const GameTile = ({ game }) => {
+const GameTile = ({ game, user }) => {
+  const isCurrentUserGame = user.id === game.userId;
   return (
     <div>
-      <Link to={`/games/${game.id}`}>
-        <p className="button-box">{game.title}</p>
-      </Link>
+      <p>
+        {game.title}
+        <Link className="play" to={`/games/${game.id}/play`}>
+          Play game
+        </Link>
+        {isCurrentUserGame && (
+          <Link className="edit" to={`/games/${game.id}`}>
+            Edit game
+          </Link>
+        )}
+      </p>
     </div>
   );
 };
