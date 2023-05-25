@@ -24,12 +24,13 @@ const GameList = (props) => {
   }, []);
 
   const gamesListArray = games.map((game) => {
-    return <GameTile user={props.user} game={game} key={game.id} />;
+    return <GameTile user={props.user} game={game} key={game.id} userKey={props.user.id} />;
   });
 
   return (
     <div>
-      <h2 className="left-space bottom-space">Games</h2>
+      <h2 className="bottom-space center">Games</h2>
+      <p className="center">Choose a game you want to play:</p>
       <div className="left-space games-pokemon-gbc-frame">{gamesListArray}</div>
     </div>
   );

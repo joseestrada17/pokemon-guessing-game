@@ -6,12 +6,12 @@ const GameTile = ({ game, user }) => {
   return (
     <div>
       <p>
-        {game.title}
-        <Link className="play" to={`/games/${game.id}/play`}>
+        <div className="bold">{game.title}</div>
+        <Link className="line-of-text" to={`/games/${game.id}/play`}>
           Play game
         </Link>
         {isCurrentUserGame && (
-          <Link className="edit" to={`/games/${game.id}`}>
+          <Link className="line-of-text" to={`/games/${game.id}`}>
             Edit game
           </Link>
         )}

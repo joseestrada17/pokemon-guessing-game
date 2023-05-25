@@ -10,7 +10,7 @@ class Prompt extends Model {
       type: "object",
       required: ["correctPokemonName"],
       properties: {
-        title: {
+        correctPokemonName: {
           type: "string",
         },
       },

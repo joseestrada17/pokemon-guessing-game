@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Redirect } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 const GameShow = (props) => {
   const { id } = useParams();
-
   const [game, setGame] = useState({
     title: "",
   });
@@ -101,6 +100,10 @@ const GameShow = (props) => {
 
     fetchPokemonNames();
   }, []);
+
+  if (game.userId && props.user && props.user.id && game.userId !== props.user.id) {
+    return <Redirect to="/games" />;
+  }
 
   return (
     <div className="margin">

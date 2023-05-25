@@ -23,10 +23,13 @@ promptsRouter.post("/", async (req, res) => {
 
     const correctPokemonApiId = pokemonData.id;
     const correctPokemonName = pokemonData.name;
+    const correctPokemonImageUrl =
+      pokemonData.sprites.versions["generation-i"]["red-blue"].front_default;
 
     const prompt = await Prompt.query().insert({
       correctPokemonApiId: correctPokemonApiId,
       correctPokemonName: correctPokemonName,
+      correctPokemonImageUrl: correctPokemonImageUrl,
       gameId: req.body.gameId,
     });
 
