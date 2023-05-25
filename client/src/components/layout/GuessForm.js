@@ -45,8 +45,6 @@ const GuessForm = ({ game, setGuess }) => {
   const handleSubmit = (event) => {
     event.preventDefault();
     postGuess(newGuess);
-    // if (game.speciesName === newGuess) {
-    // }
     clearForm();
   };
 

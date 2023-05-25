@@ -10,6 +10,7 @@ exports.up = async (knex) => {
     table.bigIncrements("id");
     table.string("correctPokemonName").notNullable();
     table.integer("correctPokemonApiId").notNullable();
+    table.string("correctPokemonImageUrl");
     table.bigInteger("gameId").unsigned().references("games.id").index().notNullable();
     table.timestamp("createdAt").notNullable().defaultTo(knex.fn.now());
     table.timestamp("updatedAt").notNullable().defaultTo(knex.fn.now());

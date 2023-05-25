@@ -6,9 +6,6 @@ import UserSeeder from "./seeders/UsersSeeder.js";
 
 class Seeder {
   static async seed() {
-    // console.log("Seeding pokemons...");
-    // await PokemonsSeeder.seed();
-
     console.log("Seeding users...");
     await UserSeeder.seed();
 

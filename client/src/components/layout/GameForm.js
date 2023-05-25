@@ -58,7 +58,7 @@ const GameForm = () => {
   };
 
   return (
-    <div>
+    <div className="center margin">
       <h1>Add a game</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -66,7 +66,7 @@ const GameForm = () => {
           <input type="text" name="title" onChange={handleInputChange} value={newGame.title} />
         </label>
         <div>
-          <input className="button" type="submit" value="Submit" />
+          <input className="button-box" type="submit" value="Submit" />
         </div>
       </form>
     </div>

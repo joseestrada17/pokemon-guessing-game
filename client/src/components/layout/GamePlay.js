@@ -17,6 +17,7 @@ const GamePlay = () => {
   const [suggestions, setSuggestions] = useState([]);
   const [pokemonNames, setPokemonNames] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [promptImages, setPromptImages] = useState({});
 
   const getGame = async () => {
     try {
@@ -74,6 +75,7 @@ const GamePlay = () => {
 
     setPokemonName("");
     setSuggestions([]);
+    setPokemonNames(pokemonNames.filter((name) => name.toLowerCase() !== pokemon));
   };
 
   const isPokemon = (pokemon) => {
@@ -94,7 +96,7 @@ const GamePlay = () => {
     if (isLoaded && correctGuesses.length === prompts.length) {
       setHasWon(true);
     }
-  }, []);
+  }, [isLoaded, correctGuesses]);
 
   useEffect(() => {
     const fetchPokemonNames = async () => {
@@ -112,7 +114,26 @@ const GamePlay = () => {
       }
     };
 
+    const fetchPromptImages = async () => {
+      try {
+        const response = await fetch("/api/v1/prompts");
+        if (!response.ok) {
+          const errorMessage = `${response.status} (${response.statusText})`;
+          throw new Error(errorMessage);
+        }
+        const data = await response.json();
+        const images = {};
+        data.prompts.forEach((prompt) => {
+          images[prompt.correctPokemonName] = prompt.correctPokemonImageUrl;
+        });
+        setPromptImages(images);
+      } catch (error) {
+        console.error(`Error in fetch: ${error.message}`);
+      }
+    };
+
     fetchPokemonNames();
+    fetchPromptImages();
   }, []);
 
   if (!isLoaded) {
@@ -132,46 +153,58 @@ const GamePlay = () => {
 
   return (
     <div className="margin">
-      <h2 className="game-name">{game.title}</h2>
-      <p>Type the Pokémon you think are correct!</p>
-      <form onSubmit={handleSubmit}>
-        <label className="add-pokemon">Guess a pokemon:</label>
-        <input type="text" name="name" value={pokemonName} onChange={handleInputChange} />
-        {showSuggestions && (
-          <div className="suggestions-window">
-            <div className="suggestions">
-              {suggestions.map((suggestion) => (
-                <p key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
-                  {suggestion}
-                </p>
-              ))}
-            </div>
-          </div>
-        )}
-        <input type="submit" value="Submit" />
-      </form>
-      {isCorrectGuess === true && <p className="guess-feedback">Your guess is correct!</p>}
-      {isCorrectGuess === false && isPokemon(pokemonName) && (
-        <p className="guess-feedback">Your guess is incorrect.</p>
-      )}
-      {isCorrectGuess === false && !isPokemon(pokemonName) && (
-        <p className="error-message">Invalid Pokémon name. Please enter a valid Pokémon.</p>
-      )}
-      <div>
-        <h3>Correct Guesses:</h3>
-        <ul>
-          {correctGuesses.map((guess, index) => (
-            <li key={index}>{guess}</li>
-          ))}
-        </ul>
+      <h2 className="game-name bottom-space">{game.title}</h2>
+      <div className="prompt-images">
+        {prompts.map((prompt, index) => (
+          <img
+            key={index}
+            src={promptImages[prompt.correctPokemonName]}
+            alt={prompt.correctPokemonName}
+          />
+        ))}
       </div>
-      <div>
-        <h3>Incorrect Guesses:</h3>
-        <ul>
-          {incorrectGuesses.map((guess, index) => (
-            <li key={index}>{guess}</li>
-          ))}
-        </ul>
+      <p className="center">Type the Pokémon you think are correct given the name of the game.</p>
+
+      <div className="pokemon-gbc-frame">
+        <form onSubmit={handleSubmit}>
+          <label className="add-pokemon">Guess a pokemon:</label>
+          <input type="text" name="name" value={pokemonName} onChange={handleInputChange} />
+          {showSuggestions && (
+            <div className="suggestions-window">
+              <div className="suggestions">
+                {suggestions.map((suggestion) => (
+                  <p key={suggestion} onClick={() => handleSuggestionClick(suggestion)}>
+                    {suggestion}
+                  </p>
+                ))}
+              </div>
+            </div>
+          )}
+          <input type="submit" value="Submit" />
+        </form>
+        {isCorrectGuess === true && <p className="guess-feedback">Your guess is correct!</p>}
+        {isCorrectGuess === false && isPokemon(pokemonName) && (
+          <p className="guess-feedback">Your guess is incorrect.</p>
+        )}
+        {isCorrectGuess === false && !isPokemon(pokemonName) && (
+          <p className="error-message">Invalid Pokémon name. Please enter a valid Pokémon.</p>
+        )}
+        <div>
+          <p>Correct Guesses:</p>
+          <ul>
+            {correctGuesses.map((guess, index) => (
+              <li key={index}>{guess}</li>
+            ))}
+          </ul>
+        </div>
+        <div>
+          <p>Incorrect Guesses:</p>
+          <ul>
+            {incorrectGuesses.map((guess, index) => (
+              <li key={index}>{guess}</li>
+            ))}
+          </ul>
+        </div>
       </div>
     </div>
   );
