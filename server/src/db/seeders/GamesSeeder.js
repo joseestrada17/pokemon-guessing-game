@@ -5,7 +5,7 @@ class GamesSeeder {
     const gameData = [
       { title: "Starter pokemon", userId: 1 },
       { title: "Starter pokemon's second evolution", userId: 2 },
-      { title: "Pikachu", userId: 2 },
+      { title: "The three legendary birds", userId: 2 },
     ];
 
     for (const singleGame of gameData) {

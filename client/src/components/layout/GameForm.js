@@ -47,8 +47,10 @@ const GameForm = () => {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-    postGame(newGame);
-    clearForm();
+    if (newGame.title.trim() !== "") {
+      postGame(newGame);
+      clearForm();
+    }
   };
 
   const clearForm = () => {
@@ -66,7 +68,12 @@ const GameForm = () => {
           <input type="text" name="title" onChange={handleInputChange} value={newGame.title} />
         </label>
         <div>
-          <input className="button-box" type="submit" value="Submit" />
+          <input
+            className="button-box"
+            type="submit"
+            value="Submit"
+            disabled={!newGame.title.trim()}
+          />
         </div>
       </form>
     </div>
