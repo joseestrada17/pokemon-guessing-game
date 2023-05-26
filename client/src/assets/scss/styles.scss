@@ -38,6 +38,11 @@ h4 {
 .welcome-message {
   padding-top: 30px;
   padding-bottom: 30px;
+  h2 {
+    margin-top: -2%;
+    margin-bottom: 3%;
+    font-weight: bold;
+  }
 }
 
 .game-page {
@@ -165,7 +170,7 @@ h4 {
 
 .suggestions-window {
   position: absolute;
-  width: 94%;
+  width: 35%;
   z-index: 999;
 }
 
@@ -229,6 +234,8 @@ h4 {
     width: 150px;
     height: 150px;
     margin-right: 2%;
+    box-shadow: 0 0 0 2px #000000, 2px 2px 0 2px #000000, -2px -2px 0 2px #000000,
+      0 0 0 4px $background-green;
   }
 }
 

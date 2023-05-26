@@ -144,9 +144,11 @@ const GamePlay = () => {
     return (
       <div>
         <h2 className="game-name">Congratulations! You have won the game!</h2>
-        <p>
-          <Link to={`/games`}>Play another game</Link>
-        </p>
+        <div>
+          <Link to={`/games`}>
+            <p className="center">Play another game</p>
+          </Link>
+        </div>
       </div>
     );
   }
@@ -163,7 +165,9 @@ const GamePlay = () => {
           />
         ))}
       </div>
-      <p className="center">Type the Pokémon you think are correct given the name of the game.</p>
+      <p className="center">
+        Type the Pokémon you think are correct given their sprites and the name of the game.
+      </p>
 
       <div className="pokemon-gbc-frame">
         <form onSubmit={handleSubmit}>
@@ -190,15 +194,15 @@ const GamePlay = () => {
           <p className="error-message">Invalid Pokémon name. Please enter a valid Pokémon.</p>
         )}
         <div>
-          <p>Correct Guesses:</p>
+          <p className="bold">Correct Guesses:</p>
           <ul>
             {correctGuesses.map((guess, index) => (
-              <li key={index}>{guess}</li>
+              <div key={index}>{guess}</div>
             ))}
           </ul>
         </div>
         <div>
-          <p>Incorrect Guesses:</p>
+          <p className="bold">Incorrect Guesses:</p>
           <ul>
             {incorrectGuesses.map((guess, index) => (
               <li key={index}>{guess}</li>
