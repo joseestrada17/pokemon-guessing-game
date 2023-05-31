@@ -3,6 +3,13 @@ import { Link } from "react-router-dom";
 import SignOutButton from "../authentication/SignOutButton";
 
 const TopBar = ({ user }) => {
+  let email = user && user.email ? user.email : "User Email";
+  if (user) {
+    email = user.email;
+  } else {
+    email = "User Email";
+  }
+
   const unauthenticatedListItems = [
     <li key="sign-in">
       <Link to="/user-sessions/new">Sign In</Link>
@@ -15,6 +22,9 @@ const TopBar = ({ user }) => {
   ];
 
   const authenticatedListItems = [
+    <li className="email-button" key="email">
+      <Link to="/profile">{email}</Link>
+    </li>,
     <li key="sign-out">
       <SignOutButton />
     </li>,
