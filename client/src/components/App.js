@@ -8,11 +8,12 @@ import RegistrationForm from "./registration/RegistrationForm";
 import SignInForm from "./authentication/SignInForm";
 import TopBar from "./layout/TopBar";
 import WelcomePage from "./layout/WelcomePage";
-import GamePage from "./layout/GamePage";
 import GameShow from "./layout/GameShow";
 import GameForm from "./layout/GameForm";
 import GameList from "./layout/GameList";
 import GamePlay from "./layout/GamePlay";
+import UserProfile from "./layout/UserProfile";
+import AuthenticatedRoute from "./authentication/AuthenticatedRoute.js";
 
 const App = (props) => {
   const [currentUser, setCurrentUser] = useState(undefined);
@@ -47,6 +48,7 @@ const App = (props) => {
           </Route>
           <Route exact path="/games/:id/play" component={GamePlay} />
           <Route exact path="/newgame" component={GameForm} />
+          <AuthenticatedRoute exact path="/profile" component={UserProfile} user={currentUser} />
         </Switch>
       </Router>
     </div>
