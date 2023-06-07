@@ -1,14 +1,16 @@
 import express from "express";
 import fetch from "node-fetch";
 import { Prompt } from "../../../models/index.js";
+import PromptsSerializer from "../../../serializers/promptsSerializer.js";
 
 const promptsRouter = new express.Router();
 
 promptsRouter.get("/", async (req, res) => {
   try {
     const prompts = await Prompt.query();
+    const serializedPrompts = prompts.map((prompt) => PromptsSerializer.serialize(prompt));
 
-    return res.status(200).json({ prompts });
+    return res.status(200).json({ prompts: serializedPrompts });
   } catch (error) {
     return res.status(500).json({ errors: error.message });
   }
@@ -33,7 +35,9 @@ promptsRouter.post("/", async (req, res) => {
       gameId: req.body.gameId,
     });
 
-    return res.status(200).json({ prompt });
+    const serializedPrompt = PromptsSerializer.serialize(prompt);
+
+    return res.status(200).json({ prompt: serializedPrompt });
   } catch (error) {
     res.status(500).json({ errors: error.message });
   }
