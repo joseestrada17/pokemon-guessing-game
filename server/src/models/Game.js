@@ -17,7 +17,7 @@ class Game extends Model {
     };
   }
   static get relationMappings() {
-    const { Prompt } = require("./index.js");
+    const { Prompt, Vote } = require("./index.js");
     return {
       prompts: {
         relation: Model.HasManyRelation,
@@ -25,6 +25,14 @@ class Game extends Model {
         join: {
           from: "games.id",
           to: "prompts.gameId",
+        },
+      },
+      votes: {
+        relation: Model.HasManyRelation,
+        modelClass: Vote,
+        join: {
+          from: "games.id",
+          to: "votes.gameId",
         },
       },
     };
